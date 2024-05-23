@@ -52,7 +52,6 @@ InfLoop:
       b InfLoop
 
 .globl main
-
 main:
 
       b1 IniRegistros
