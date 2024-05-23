@@ -32,3 +32,4 @@
 .equ Luces, 0xFFFFFD
 .equ Ruedas, 0x070908
 .equ Vidrios, 0x000000
+
