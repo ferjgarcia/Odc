@@ -1,11 +1,9 @@
-.section ".data"
-.section ".text"
+.section .text
 .globl _auto
 _auto:
-    .include "app.s"
 
     // Configura las coordenadas del rectángulo
-    ldr x0, =Rojo            // Cargar la dirección de Rojo (si es un valor definido en .data)
+    ldr x0, =0x922220          // Cargar la dirección de Rojo (si es un valor definido en .data)
     mov x1, #100            // Coordenada X del extremo inferior izquierdo
     mov x2, #100            // Coordenada Y del extremo inferior izquierdo
     mov x3, #300            // Coordenada X del extremo superior derecho
@@ -14,5 +12,4 @@ _auto:
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
 
-ret
-
+    ret
