@@ -1,7 +1,7 @@
 // Defines
-.equ SCREEN_WIDTH, 640
-.equ SCREEN_HEIGHT, 480
-.equ BITS_PER_PIXEL, 32
+	.equ SCREEN_WIDTH, 640
+	.equ SCREEN_HEIGHT, 480
+	.equ BITS_PER_PIXEL, 32
 
 // COLORES DEL FONDO
 
@@ -54,6 +54,7 @@
 
 .globl main
 main:
-	bl plot_point
-      // FUNCIONES A IMPLEMENTAR
+   	bl IniRegistros
+	bl _auto //ACA EJECUTAR LAS FUNCIONES
+
     	b InfLoop
