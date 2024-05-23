@@ -38,3 +38,10 @@
 .equ Ruedas, 0x070908
 .equ Vidrios, 0x000000
 
+//Inicializamos los registros
+
+IniRegistros:
+      mov x29, x0
+      mov x19, SCREEN_WIDTH
+      mov x20, SCREEN_HEIGHT
+      ret
