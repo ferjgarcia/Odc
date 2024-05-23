@@ -17,11 +17,4 @@ _auto:
     // Salir del programa
     mov x8, #93             // Syscall exit (número 93)
     svc #0
-
-.section ".text.Pinta_punto"
-Pinta_punto:
-    // Código para pintar un punto en el framebuffer
-    // Implementación de Pinta_punto aquí
-    ret
-
-    
+  
