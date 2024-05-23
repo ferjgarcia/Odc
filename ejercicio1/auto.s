@@ -14,7 +14,3 @@ _auto:
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
 
-    // Salir del programa
-    mov x8, #93             // Syscall exit (número 93)
-    svc #0
-  
