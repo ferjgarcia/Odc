@@ -1,3 +1,8 @@
+// Defines
+	.equ SCREEN_WIDTH, 640
+	.equ SCREEN_HEIGHT, 480
+	.equ BITS_PER_PIXEL, 32
+
 // COLORES DEL FONDO
 
 .equ Verde_pasto_1, 0x488800
