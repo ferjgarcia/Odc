@@ -2,8 +2,8 @@
 rect_color: .word 0x808080   // Color gris en formato RGB
 
 .section ".text"
-.globl _start
-_start:
+.globl _auto
+_auto:
     // Configura las coordenadas del rectángulo
     mov x0, rect_color      // Color gris
     mov x1, #100            // Coordenada X del extremo inferior izquierdo
