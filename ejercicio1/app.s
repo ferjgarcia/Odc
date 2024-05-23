@@ -58,3 +58,5 @@ main:
 	bl _auto //ACA EJECUTAR LAS FUNCIONES
 
     	b InfLoop
+
+     
