@@ -1,39 +1,25 @@
-.globl plot_point
-
-.equ SCREEN_WIDTH, 640
-.equ SCREEN_HEIGHT, 480
-.equ BITS_PER_PIXEL, 32
-
+.section ".data"
+rect_color: .word 0x808080   // Color gris en formato RGB
 
 .section ".text"
-plot_point:
-    // x0 -> color
-    // (x1,x2) y (x3,x4) extremos opuestos
-    // x25 -> sumo al color
-    // x22 -> sumo al 2do color
+.globl _start
+_start:
+    // Configura las coordenadas del rectángulo
+    mov x0, rect_color      // Color gris
+    mov x1, #100            // Coordenada X del extremo inferior izquierdo
+    mov x2, #100            // Coordenada Y del extremo inferior izquierdo
+    mov x3, #300            // Coordenada X del extremo superior derecho
+    mov x4, #300            // Coordenada Y del extremo superior derecho
 
-    str x0,[sp,-8]!
-    str x24,[sp,-8]!
-    str x5,[sp,-8]!
-    str x6,[sp,-8]!
-    str x7,[sp,-8]!
-    str x8,[sp,-8]!
-    str x9,[sp,-8]!
-    str x10,[sp,-8]!
-    str x30,[sp,-8]!
+    // Llama a la función Pinta_rectangulo
+    bl Pinta_rectangulo
 
-    minix .req x5
-    miniy .req x6
-    maxix .req x7
-    maxiy .req x8
-    xx .req x9
-    yy .req x10
-    sumo .req x25
-    sumo2 .req x22
+    // Salir del programa
+    mov x8, #93             // Syscall exit (número 93)
+    svc #0
 
-        mov minix,x1
-        mov miniy,x2
-        mov maxix,x3
-        mov maxiy,x4
-
-        ret
+.section ".text.Pinta_punto"
+Pinta_punto:
+    // Código para pintar un punto en el framebuffer
+    // Implementación de Pinta_punto aquí
+    ret
