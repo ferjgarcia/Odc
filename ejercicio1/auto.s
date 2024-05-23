@@ -14,3 +14,5 @@ _auto:
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
 
+ret
+
