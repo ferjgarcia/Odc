@@ -13,5 +13,14 @@ _auto:
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
 
-    ret
+    //RUEDAS
+    ldr x0, =Linea_blanca_ruta          // Cargar la dirección de Rojo (valor incluido en colores.s)
+    mov x1, #100            // Coordenada X del extremo inferior izquierdo
+    mov x2, #20            // Coordenada Y del extremo inferior izquierdo
+    mov x3, #100            // Coordenada X del extremo superior derecho
+    mov x4, #28           // Coordenada Y del extremo superior derecho
 
+    // Llama a la función Pinta_rectangulo
+    bl Pinta_rectangulo
+
+    ret
