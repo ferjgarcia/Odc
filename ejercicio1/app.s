@@ -45,3 +45,14 @@ IniRegistros:
       mov x19, SCREEN_WIDTH
       mov x20, SCREEN_HEIGHT
       ret
+
+//Ponemos un loop infinito para ver el trabajo
+
+InfLoop:
+      b InfLoop
+
+.globl main
+
+main:
+
+      b1 IniRegistros
