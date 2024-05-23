@@ -2,8 +2,10 @@
 .section ".text"
 .globl _auto
 _auto:
+    .include "app.s"
+
     // Configura las coordenadas del rectángulo
-    mov x0, rect_color      // Color gris
+    ldr x0, =Rojo            // Cargar la dirección de Rojo (si es un valor definido en .data)
     mov x1, #100            // Coordenada X del extremo inferior izquierdo
     mov x2, #100            // Coordenada Y del extremo inferior izquierdo
     mov x3, #300            // Coordenada X del extremo superior derecho
@@ -21,4 +23,5 @@ Pinta_punto:
     // Código para pintar un punto en el framebuffer
     // Implementación de Pinta_punto aquí
     ret
+
     
