@@ -13,3 +13,4 @@ _auto:
     bl Pinta_rectangulo
 
     ret
+
