@@ -22,7 +22,7 @@
 main:
    	bl IniRegistros
 	bl _auto //ACA EJECUTAR LAS FUNCIONES
-	bl _fondo
+	bl pasto
  
     	b InfLoop
 //Fila vacia
