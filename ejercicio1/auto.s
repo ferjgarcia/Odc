@@ -2,6 +2,21 @@
 .include "colores.s"
 .globl _auto
 _auto:
+
+    str x0, [sp, -8]!
+    str x1, [sp, -8]!
+    str x2, [sp, -8]!
+    str x3, [sp, -8]!
+    str x4, [sp, -8]!
+    str x10, [sp, -8]!
+    str x11, [sp, -8]!
+    str x12, [sp, -8]!
+    str x13, [sp, -8]!
+    str x14, [sp, -8]!
+    str x23, [sp, -8]!
+    str x24, [sp, -8]!
+    str x25, [sp, -8]!
+    str x30, [sp, -8]!
     //RUEDAS
 
     // Inicializa las coordenadas de la primera rueda
@@ -54,11 +69,20 @@ ruedas_loop:
 
     bl Pinta_rectangulo
 
-    //LUCES
-
+    ldr x30, [sp], 8
+    ldr x25, [sp], 8
+    ldr x24, [sp], 8
+    ldr x23, [sp], 8
+    ldr x14, [sp], 8
+    ldr x13, [sp], 8
+    ldr x12, [sp], 8
+    ldr x11, [sp], 8
+    ldr x10, [sp], 8
+    ldr x4, [sp], 8
+    ldr x3, [sp], 8
+    ldr x2, [sp], 8
+    ldr x1, [sp], 8
+    ldr x0, [sp], 8
 
     ret
-
- //LINEA VACIA
-
- 
+    
