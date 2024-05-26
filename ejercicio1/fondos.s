@@ -42,7 +42,45 @@
      cmp x5, #479                  // Comparar con el número total de líneas (480 líneas)
      b.lt loop                     // Volver a pintar otra línea si no se ha alcanzado el final
 
-  fondo:
+// LINEAS BLANCAS Y ROJAS
+
+    mov x5, #140          
+    mov x6, #0            
+    mov x7, #500          
+    mov x8, #50           
+
+    ldr x0, =Linea_blanca_costado_1 
+
+lineas_loop:
+
+    mov x1, x5
+    mov x2, x6
+    mov x3, x7
+    mov x4, x8
+
+    bl Pinta_rectangulo
+
+    // Incrementa las coordenadas 
+    add x6, x6, #50        // Y inferior
+    add x8, x8, #50        // Y superior
+
+    // Alternar colores
+    ldr x10, =Linea_blanca_costado_1
+    ldr x11, =Linea_roja_costado_1
+    cmp x0, x10            // Compara x0 con el color blanco
+    b.eq cambiar_a_roja    // Si es blanca, cambia a rojo
+
+cambiar_a_blanca:
+    ldr x0, =Linea_blanca_costado_1
+    b continuar
+
+cambiar_a_roja:
+    ldr x0, =Linea_roja_costado_1
+
+continuar:
+    cmp x6, #500           
+    b.lt lineas_loop      
+
 
 //Ruta base
     ldr x0, =Gris_ruta_1
@@ -109,51 +147,6 @@
     mov x3, #381
     mov x4, #388
     bl Pinta_rectangulo
-    
-    //Lineas blancas de la izquierda de la ruta
-lineas_loop:
-
-     ldr x0, =Linea_blanca_costado_1         // Cargo el color
-     mov x1, #152                    	     // Coordenada X del extremo inferior izquierdo
-     mov x2, x5                    	     // Coordenada Y del extremo inferior izquierdo
-     mov x3, #157                   	     // Coordenada X del extremo superior derecho
-     mov x4, x5                              // Coordenada Y del extremo superior derecho
-     bl Pinta_rectangulo
-
-     // Configura las coordenadas del rectángulo siguiente con el otro color
-     ldr x0, =Linea_blanca_costado_2        // Cargar la dirección de Verde_pasto_2 (valor incluido en colores.s)
-     mov x1, #158                    	    // Coordenada X del extremo inferior izquierdo
-     add x2, x5, #30                	    // Coordenada Y del extremo inferior izquierdo (línea siguiente)
-     mov x3, #163                 	    // Coordenada X del extremo superior derecho
-     add x4, x5, #30                	    // Coordenada Y del extremo superior derecho (línea siguiente)
-
-     bl Pinta_rectangulo
-
-     add x5, x5, #2                // Incrementar el contador de línea en 2 para la siguiente línea
-
-     cmp x5, #14                  // Comparar con el número total de líneas (480 líneas)
-     b.lt lineas_loop                     // Volver a pintar otra línea si no se ha alcanzado el final
-	    	
-    ldr x0, =Linea_blanca_costado_2
-    mov x1, #158
-    mov x2, #29
-    mov x3, #163
-    mov x4, #0
-    bl Pinta_rectangulo
-
-    ldr x0, =Linea_roja_costado_1
-    mov x1, #152
-    mov x2, #59
-    mov x3, #157
-    mov x4, #30
-    bl Pinta_rectangulo
-
-    ldr x0, =Linea_roja_costado_2
-    mov x1, #158
-    mov x2, #59
-    mov x3, #163
-    mov x4, #30
-    bl Pinta_rectangulo
 
     // Restauración del estado del registro
     ldr x30, [sp], 8
@@ -172,3 +165,4 @@ lineas_loop:
     ldr x0, [sp], 8
 
     ret
+
