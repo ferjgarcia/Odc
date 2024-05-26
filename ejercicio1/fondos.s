@@ -29,7 +29,7 @@
      bl Pinta_rectangulo
 
      // Configura las coordenadas del rectángulo siguiente con el otro color
-     ldr x0, =Verde_arbol_oscuro        // Cargar la dirección de Verde_pasto_2 (valor incluido en colores.s)
+     ldr x0, =Verde_pasto_2        // Cargar la dirección de Verde_pasto_2 (valor incluido en colores.s)
      mov x1, #0                    // Coordenada X del extremo inferior izquierdo
      add x2, x5, #1                // Coordenada Y del extremo inferior izquierdo (línea siguiente)
      mov x3, #639                  // Coordenada X del extremo superior derecho
@@ -52,7 +52,7 @@
     mov x4, #0
     bl Pinta_rectangulo
     
-    //Lineas de la calle
+    //Primera linea de la calle
     ldr x0, =Linea_blanca_ruta
     mov x1, #264
     mov x2, #100
@@ -81,7 +81,7 @@
     mov x4, #388
     bl Pinta_rectangulo
 
-    //Línea del medio de la calle
+    //Segunda línea de la calle
     ldr x0, =Linea_blanca_ruta
     mov x1, #376
     mov x2, #100
@@ -109,7 +109,52 @@
     mov x3, #381
     mov x4, #388
     bl Pinta_rectangulo
-     
+    
+    //Lineas blancas de la izquierda de la ruta
+lineas_loop:
+
+     ldr x0, =Linea_blanca_costado_1         // Cargo el color
+     mov x1, #152                    	     // Coordenada X del extremo inferior izquierdo
+     mov x2, x5                    	     // Coordenada Y del extremo inferior izquierdo
+     mov x3, #157                   	     // Coordenada X del extremo superior derecho
+     mov x4, x5                              // Coordenada Y del extremo superior derecho
+     bl Pinta_rectangulo
+
+     // Configura las coordenadas del rectángulo siguiente con el otro color
+     ldr x0, =Linea_blanca_costado_2        // Cargar la dirección de Verde_pasto_2 (valor incluido en colores.s)
+     mov x1, #158                    	    // Coordenada X del extremo inferior izquierdo
+     add x2, x5, #30                	    // Coordenada Y del extremo inferior izquierdo (línea siguiente)
+     mov x3, #163                 	    // Coordenada X del extremo superior derecho
+     add x4, x5, #30                	    // Coordenada Y del extremo superior derecho (línea siguiente)
+
+     bl Pinta_rectangulo
+
+     add x5, x5, #2                // Incrementar el contador de línea en 2 para la siguiente línea
+
+     cmp x5, #14                  // Comparar con el número total de líneas (480 líneas)
+     b.lt lineas_loop                     // Volver a pintar otra línea si no se ha alcanzado el final
+	    	
+    ldr x0, =Linea_blanca_costado_2
+    mov x1, #158
+    mov x2, #29
+    mov x3, #163
+    mov x4, #0
+    bl Pinta_rectangulo
+
+    ldr x0, =Linea_roja_costado_1
+    mov x1, #152
+    mov x2, #59
+    mov x3, #157
+    mov x4, #30
+    bl Pinta_rectangulo
+
+    ldr x0, =Linea_roja_costado_2
+    mov x1, #158
+    mov x2, #59
+    mov x3, #163
+    mov x4, #30
+    bl Pinta_rectangulo
+
     // Restauración del estado del registro
     ldr x30, [sp], 8
     ldr x25, [sp], 8
