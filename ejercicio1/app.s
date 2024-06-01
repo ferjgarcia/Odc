@@ -26,7 +26,7 @@ main:
 	
 	bl _fondo
 	bl _auto //ACA EJECUTAR LAS FUNCIONES
-	bl_Dibuja_arboles
+	bl Dibuja_arboles
  
     b InfLoop
 //Fila vacia
