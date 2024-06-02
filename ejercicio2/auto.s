@@ -26,6 +26,11 @@ _auto:
     mov x7, 353            // Coordenada X inicial del extremo superior derecho
     mov x8, 235            // Coordenada Y inicial del extremo superior derecho
 
+    add x5, x5, x10 // X
+    add x7, x7, x10 // X
+    add x6, x6, x11 // Y
+    add x8, x8, x11 // y
+
     mov w9, 0              // Inicializa el contador de ruedas en 0
 
 ruedas_loop:
@@ -56,6 +61,12 @@ ruedas_loop:
     mov x3, 348            // Coordenada X del extremo superior derecho
     mov x4, 290            // Coordenada Y del extremo superior derecho
 
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
+
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
     
@@ -65,6 +76,11 @@ ruedas_loop:
     mov x3, 345            
     mov x4, 203            
 
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -73,7 +89,11 @@ ruedas_loop:
     mov x2, 197            
     mov x3, 339            
     mov x4, 200           
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -84,7 +104,11 @@ ruedas_loop:
     mov x2, 197            
     mov x3, 312            
     mov x4, 200           
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -93,7 +117,11 @@ ruedas_loop:
     mov x2, 200            
     mov x3, 302            
     mov x4, 203           
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -102,7 +130,11 @@ ruedas_loop:
     mov x2, 197            
     mov x3, 339            
     mov x4, 200           
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -111,7 +143,11 @@ ruedas_loop:
     mov x2, 200            
     mov x3, 343            
     mov x4, 203           
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     
     bl Pinta_rectangulo
 
@@ -122,7 +158,11 @@ ruedas_loop:
     mov x2, 218            
     mov x3, 339            
     mov x4, 230            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Vidrios       
@@ -130,7 +170,11 @@ ruedas_loop:
     mov x2, 215            
     mov x3, 336            
     mov x4, 218            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo    
 
     ldr x0, =Rojo       
@@ -138,7 +182,11 @@ ruedas_loop:
     mov x2, 229            
     mov x3, 336            
     mov x4, 230            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     // Vidrios traseros
@@ -148,7 +196,11 @@ ruedas_loop:
     mov x2, 271            
     mov x3, 339            
     mov x4, 283            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Vidrios       
@@ -156,7 +208,11 @@ ruedas_loop:
     mov x2, 283            
     mov x3, 336            
     mov x4, 284            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo    
 
     ldr x0, =Rojo       
@@ -164,7 +220,11 @@ ruedas_loop:
     mov x2, 270            
     mov x3, 336            
     mov x4, 271            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     // Vidrios laterales  
@@ -174,7 +234,11 @@ ruedas_loop:
     mov x2, 267            
     mov x3, 304            
     mov x4, 234            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Rojo       
@@ -182,7 +246,11 @@ ruedas_loop:
     mov x2, 251            
     mov x3, 304            
     mov x4, 250            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Vidrios       
@@ -190,7 +258,11 @@ ruedas_loop:
     mov x2, 267            
     mov x3, 337            
     mov x4, 234            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Rojo       
@@ -198,7 +270,11 @@ ruedas_loop:
     mov x2, 251            
     mov x3, 337            
     mov x4, 250            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     // ALERÓN
@@ -208,7 +284,11 @@ ruedas_loop:
     mov x2, 290            
     mov x3, 351            
     mov x4, 297
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
 
     ldr x0, =Rojo       
@@ -216,7 +296,11 @@ ruedas_loop:
     mov x2, 293            
     mov x3, 351            
     mov x4, 299            
-    
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y    
     bl Pinta_rectangulo
     
     // Líneas verticales del auto
@@ -226,7 +310,11 @@ ruedas_loop:
     mov x2, 271            
     mov x3, 325            
     mov x4, 229            
-
+    // DESPLAZA EL AUTO A UNA POSICION (X, Y)
+    add x1, x1, x10 // X
+    add x3, x3, x10 // X
+    add x2, x2, x11 // Y
+    add x4, x4, x11 // y
     bl Pinta_rectangulo
 
     ldr x30, [sp], 8
@@ -245,4 +333,5 @@ ruedas_loop:
     ldr x0, [sp], 8
 
     ret
+    
     
