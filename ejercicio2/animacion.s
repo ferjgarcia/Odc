@@ -1,79 +1,49 @@
 .global draw_point_animation
 
-.equ DELAY, 100000000  //retraso 0.1 s (en nanosegundos)
+.equ SCREEN_WIDTH, 640
+.equ SCREEN_HEIGHT, 480
+.equ DELAY, 100000000  // retraso 0.1 s (en nanosegundos)
+
+.section .data
+x_pos: .quad 320        // Coordenada x inicial (centro horizontal de la pantalla)
+y_pos: .quad 480        // Coordenada y inicial (parte inferior de la pantalla)
+
+.section .text
 
 draw_point_animation:
-    // Inicializa las coordenadas del punto
-    mov x9, #320        // Coordenada x inicial (centro horizontal de la pantalla)
-    mov x10, #240        // Coordenada y inicial (centro vertical de la pantalla)
+    // Configura el punto inicial
+    ldr x9, =x_pos       // Carga la dirección de x_pos en x9
+    ldr x10, =y_pos      // Carga la dirección de y_pos en x10
 
 draw_loop:
+    // Borra el punto anterior
+    mov x0, 0x000000     // Color negro
+    bl Pinta_punto       // Borra el punto anterior
 
-    // Dibuja el punto en las coordenadas actuales
-    mov x0, 0xffffff //Color del punto
+    // Mueve el punto hacia arriba
+    sub x10, x10, #1     // Decrementa la coordenada y (mover hacia arriba)
 
-    bl Pinta_punto
-
-    // Mueve el punto hacia la derecha y hacia abajo para dibujar una diagonal
-    add x9, x9, #1      // Incrementa la coordenada x
-    add x10, x10, #1      // Incrementa la coordenada y
-
-    // Verifica si el punto ha llegado al borde de la pantalla
-    cmp x9, 640
-    bge reset_point    // Si x >= SCREEN_WIDTH, reinicia las coordenadas al centro
-    cmp x10, 480
-    bge reset_point
+    // Verifica si el punto ha salido de la pantalla
+    cmp x10, 0
+    bge draw_point       // Si y >= 0, dibuja el punto
+    b reset_point        // Si el punto sale de la pantalla, reinicia las coordenadas
 
     // Espera un breve momento antes de dibujar el siguiente punto
-    ldr x11,=DELAY
+    ldr x11, =DELAY
     bl Wait
 
-    // Vuelve al inicio del bucle
-    b draw_loop
+    b draw_loop         // Vuelve al inicio del bucle
 
 reset_point:
-    // Reinicia las coordenadas al centro de la pantalla
-    mov x9, #320
-    mov x10, #240
+    // Reinicia las coordenadas al punto inicial
+    ldr x10, =SCREEN_HEIGHT // Coordenada y inicial (parte inferior de la pantalla)
     b draw_loop
 
-    // Retorno
-    ret
-
-.globl Wait
-
+.global Wait
 Wait:
     // Espera el tiempo especificado en x11 (en ciclos de reloj)
-    mov x0, x11  // Carga el tiempo de espera en ciclos de reloj
+    mov x0, x11          // Carga el tiempo de espera en ciclos de reloj
 wait_loop:
-    subs x0, x0, #1  // Decrementa el contador de tiempo
-    bne wait_loop    // Salta de nuevo al bucle si el contador no ha llegado a cero
-    ret              // Retorna cuando el tiempo de espera ha transcurrido
-
-.globl Borra_punto_anterior // La idea es borrar el rastro haciendo algo asi
-
-Borra_punto_anterior:
-
-    str x0,[sp,-8]!
-    str x1,[sp,-8]!
-    str x2,[sp,-8]!
-    str x3,[sp,-8]!
-    str x22,[sp,-8]!
-    str x23,[sp,-8]!
-    str x24,[sp,-8]!
-
-    mov x0, 0x00
-    sub x9, x9, #1 //posicion x anterior
-    sub x10, x10,#1 // posicion y anterior
-
-    bl Pinta_punto
-
-    ldr x24,[sp],8
-    ldr x23,[sp],8
-    ldr x22,[sp],8
-    ldr x3,[sp],8
-    ldr x2,[sp],8
-    ldr x1,[sp],8
-    ldr x0,[sp],8
-
-    ret
+    subs x0, x0, #1      // Decrementa el contador de tiempo
+    bne wait_loop        // Salta de nuevo al bucle si el contador no ha llegado a cero
+    ret                  // Retorna cuando el tiempo de espera ha transcurrido
