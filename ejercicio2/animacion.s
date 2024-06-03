@@ -2,8 +2,8 @@
 .include "colores.s"
 .global Car_animation
 
-.equ DELAY_AUTO, 100000000  //retraso 0.5 s (en nanosegundos)
-.equ DELAY_COMIENZO, 1000000000
+.equ DELAY_AUTO, 200000000  //retraso 0.2 s (en nanosegundos)
+.equ DELAY_COMIENZO, 100000000
 
 Car_animation:
     str x0, [sp, -8]!
@@ -21,18 +21,32 @@ Car_animation:
     str x25, [sp, -8]!
     str x30, [sp, -8]!
 
-    
+    // CONTADOR
+    mov w15, #0
+
+    // inicializo el auto
     mov x10, #0
     mov x11, #0
 
     bl _auto
+
     // inicializo el rectangulo
+    mov x1, #280 //X
+    mov x2, #320//Y
+    mov x3, #360//X
+    mov x4, #210//Y
 
     ldr x13,=DELAY_COMIENZO
     bl Wait
 draw_loop:
+    // veces que se ejecuta el bucle hasta que el auto salga de la pantalla
+    cmp w15, #40
+    bge draw_loop_end
 
-    bl tapa_rastro
+    str x0, [sp, -8]!
+    ldr x0, =Gris_ruta_1
+    bl Pinta_rectangulo 
+    ldr x0, [sp], 8
 
     bl _auto
 
@@ -41,24 +55,16 @@ draw_loop:
     sub x2, x2, #10      
     sub x4, x4, #10
 
-    // Verifica si el punto ha llegado al borde de la pantalla
-    //cmp x9, 640
-    //bge reset_point    // Si x >= SCREEN_WIDTH, reinicia las coordenadas al centro
-    //cmp x10, 480
-    //bge reset_point
+    add w15, w15, #1
 
-    // Espera un breve momento antes de dibujar el siguiente punto
+    // Espera un breve momento antes de dibujar el siguiente auto
 
     ldr x13,=DELAY_AUTO
     bl Wait
     // Vuelve al inicio del bucle
     b draw_loop
 
-reset_point:
-    // Reinicia las coordenadas al centro de la pantalla
-    //mov x9, #320
-    //mov x10, #240
-    //b draw_loop
+draw_loop_end:
 
     ldr x30, [sp], 8
     ldr x25, [sp], 8
@@ -93,28 +99,4 @@ wait_loop:
 
     ret              // Retorna cuando el tiempo de espera ha transcurrido
 
-.globl tapa_rastro
-tapa_rastro:
-
-    str x0, [sp, -8]!
-    str x1, [sp, -8]!
-    str x2, [sp, -8]!
-    str x3, [sp, -8]!
-    str x4, [sp, -8]!
-
-    ldr x0, =Gris_ruta_1
-    mov x1, #280 //X
-    mov x2, #300//Y
-    mov x3, #360//X
-    mov x4, #190//Y
-
-    bl Pinta_rectangulo
-
-    ldr x4, [sp], 8
-    ldr x3, [sp], 8
-    ldr x2, [sp], 8
-    ldr x1, [sp], 8
-    ldr x0, [sp], 8
-
-    ret
-
+    
