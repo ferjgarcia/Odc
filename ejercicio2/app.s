@@ -24,8 +24,10 @@
 main:
    	bl IniRegistros
 	
-	bl draw_point_animation
+	bl _fondo
+	bl Dibuja_arboles
+	bl Car_animation
+
+
  
     b InfLoop
-//Fila vacia
-
