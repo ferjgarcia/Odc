@@ -56,64 +56,38 @@ ruedas_loop:
     cmp w9, #2
     b.lt ruedas_loop       // Si aún no se han dibujado 4 ruedas, repite el bucle
 
+    //LUCES DEL AUTO
+    // Inicializar coordenadas del primer triángulo
+    ldr x0, =Amarillo
+    mov x1, 303                   // Coordenada X del vértice superior
+    mov x2, 203                  // Coordenada Y del vértice superior
+    mov x3, 278                  // Coordenada X del primer vértice de la base
+    mov x4, 153                  // Coordenada Y del primer vértice de la base
+    mov x5, 328                  // Coordenada X del segundo vértice de la base
+    mov x6, 153                  // Coordenada Y del segundo vértice de la base
+    sub x2, x2, x11 // Y
+    sub x4, x4, x11 // y
+    sub x6, x6, x11 // Y
 
-        //Iluminacion de las luces
-    
-// Inicializar coordenadas del primer triángulo
-    mov x9, 303                   // Coordenada X del vértice superior
-    mov x10, 203                  // Coordenada Y del vértice superior
-    mov x11, 278                  // Coordenada X del primer vértice de la base
-    mov x12, 153                  // Coordenada Y del primer vértice de la base
-    mov x13, 328                  // Coordenada X del segundo vértice de la base
-    mov x14, 153                  // Coordenada Y del segundo vértice de la base
+    bl Pinta_triangulo
 
     // Inicializar coordenadas del segundo triángulo
-    mov x15, 338                  // Coordenada X del vértice superior del triángulo
-    mov x16, 203                  // Coordenada Y del vértice superior del triángulo
-    mov x17, 313                  // Coordenada X del primer vértice de la base del triángulo
-    mov x18, 153                  // Coordenada Y del primer vértice de la base del triángulo
-    mov x19, 363                  // Coordenada X del segundo vértice de la base del triángulo
-    mov x20, 153                  // Coordenada Y del segundo vértice de la base del triángulo
-
-    mov x7, 10                   // Cantidad de iteraciones
-    mov x8, 10                   // Valor de decremento
-
-loop:
-    // Dibujar el primer triángulo
-    ldr x0, =Amarillo            // Cargar el color Amarillo
-    mov x1, x9                   // Coordenada X del vértice superior
-    mov x2, x10                  // Coordenada Y del vértice superior
-    mov x3, x11                  // Coordenada X del primer vértice de la base
-    mov x4, x12                  // Coordenada Y del primer vértice de la base
-    mov x5, x13                  // Coordenada X del segundo vértice de la base
-    mov x6, x14                  // Coordenada Y del segundo vértice de la base
-    bl Pinta_triangulo           // Llamar a la función Pinta_triangulo
-
-    // Dibujar el segundo triángulo
-    ldr x0, =Amarillo            // Cargar el color Amarillo
-    mov x1, x15                  // Coordenada X del vértice superior del triángulo
-    mov x2, x16                  // Coordenada Y del vértice superior del triángulo
-    mov x3, x17                  // Coordenada X del primer vértice de la base del triángulo
-    mov x4, x18                  // Coordenada Y del primer vértice de la base del triángulo
-    mov x5, x19                  // Coordenada X del segundo vértice de la base del triángulo
-    mov x6, x20                  // Coordenada Y del segundo vértice de la base del triángulo
-    bl Pinta_triangulo           // Llamar a la función Pinta_triangulo
-
-    // Desplazar el segundo triángulo hacia abajo
-    sub x16, x16, x8             // Desplazar vértice superior del triángulo
-    sub x18, x18, x8             // Desplazar primer vértice de la base
-    sub x20, x20, x8             // Desplazar segundo vértice de la base
-
-    // Decrementar el contador de iteraciones
-    sub x7, x7, 1
-    cbnz x7, loop                // Si x7 no es cero, repetir el bucle
-
-
+    
+    mov x1, 338                  // Coordenada X del vértice superior del triángulo
+    mov x2, 203                  // Coordenada Y del vértice superior del triángulo
+    mov x3, 313                  // Coordenada X del primer vértice de la base del triángulo
+    mov x4, 153                  // Coordenada Y del primer vértice de la base del triángulo
+    mov x5, 363                  // Coordenada X del segundo vértice de la base del triángulo
+    mov x6, 153                  // Coordenada Y del segundo vértice de la base del triángulo
+    sub x2, x2, x11 // Y
+    sub x4, x4, x11 // y
+    sub x6, x6, x11 // Y
+    bl Pinta_triangulo
 
     //CUERPO DEL AUTO
 
     // Configura las coordenadas del auto
-    ldr x0, =Rojo          // Cargar la dirección de Rojo (valor incluido en colores.s)
+    mov x0, x12          // Cargar la dirección de Rojo (valor incluido en colores.s)
     mov x1, 293            // Coordenada X del extremo inferior izquierdo
     mov x2, 203            // Coordenada Y del extremo inferior izquierdo
     mov x3, 348            // Coordenada X del extremo superior derecho
@@ -128,7 +102,7 @@ loop:
     // Llama a la función Pinta_rectangulo
     bl Pinta_rectangulo
     
-    ldr x0, =Rojo
+    mov x0, x12
     mov x1, 296            
     mov x2, 200            
     mov x3, 345            
@@ -142,7 +116,7 @@ loop:
     
     bl Pinta_rectangulo
 
-    ldr x0, =Rojo
+    mov x0, x12
     mov x1, 302            
     mov x2, 197            
     mov x3, 339            
@@ -235,7 +209,7 @@ loop:
     sub x4, x4, x11 // y    
     bl Pinta_rectangulo    
 
-    ldr x0, =Rojo       
+    mov x0, x12       
     mov x1, 305            
     mov x2, 229            
     mov x3, 336            
@@ -273,7 +247,7 @@ loop:
     sub x4, x4, x11 // y    
     bl Pinta_rectangulo    
 
-    ldr x0, =Rojo       
+    mov x0, x12       
     mov x1, 305            
     mov x2, 270            
     mov x3, 336            
@@ -299,7 +273,7 @@ loop:
     sub x4, x4, x11 // y    
     bl Pinta_rectangulo
 
-    ldr x0, =Rojo       
+    mov x0, x12       
     mov x1, 302            
     mov x2, 251            
     mov x3, 304            
@@ -323,7 +297,7 @@ loop:
     sub x4, x4, x11 // y    
     bl Pinta_rectangulo
 
-    ldr x0, =Rojo       
+    mov x0, x12       
     mov x1, 339            
     mov x2, 251            
     mov x3, 337            
@@ -337,7 +311,7 @@ loop:
 
     // ALERÓN
  
-    ldr x0, =Rojo_sombra       // Cargar la dirección de Rojo_Sombra (valor incluido en colores.s)
+    ldr x0, =Ruedas       // Cargar la dirección de Rojo_Sombra (valor incluido en colores.s)
     mov x1, 290            
     mov x2, 290            
     mov x3, 351            
@@ -349,7 +323,7 @@ loop:
     sub x4, x4, x11 // y    
     bl Pinta_rectangulo
 
-    ldr x0, =Rojo       
+    mov x0, x12       
     mov x1, 290            
     mov x2, 293            
     mov x3, 351            
