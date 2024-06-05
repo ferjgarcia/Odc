@@ -26,7 +26,20 @@ main:
 	
 	bl _fondo
 	bl Dibuja_arboles
+	ldr x14, =Rojo
+	// inicializo el auto
+    mov x10, #640
+    mov x11, #0
+    mov x12, x14
+    bl _auto
+	bl Car_animation
 
+	ldr x14, =Linea_blanca_costado_1
+	// inicializo el auto
+    mov x10, #640
+    mov x11, #0
+    mov x12, x14
+    bl _auto
 	bl Car_animation
 
 
