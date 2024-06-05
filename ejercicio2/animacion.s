@@ -3,7 +3,6 @@
 .global Car_animation
 
 .equ DELAY_AUTO, 100000000  //retraso 0.1 s (en nanosegundos)
-//.equ DELAY_COMIENZO, 1000000000 //retraso 1s
 
 Car_animation:
     str x0, [sp, -8]!
@@ -24,21 +23,12 @@ Car_animation:
     // CONTADOR
     mov w15, #0
 
-    ldr x14, =Rojo
-	// inicializo el auto
-    mov x10, #640
-    mov x11, #0
-    mov x12, x14
-    bl _auto
-
 // inicializo el rectangulo
     mov x1, #270 //X
     mov x2, #630//Y
     mov x3, #365//X
     mov x4, #820//Y
-
-    //ldr x13,=DELAY_COMIENZO
-    //bl Wait
+    
 draw_loop:
     // veces que se ejecuta el bucle hasta que el auto salga de la pantalla
     cmp w15, #80
@@ -51,6 +41,7 @@ draw_loop:
     mov x12, x14
     bl _auto
 
+    bl _auto
     // Incrementa la coordenada y
     add x11, x11, #10
     sub x2, x2, #10      
@@ -99,5 +90,4 @@ wait_loop:
     ldr x13,[sp],8
 
     ret              // Retorna cuando el tiempo de espera ha transcurrido
-
 
