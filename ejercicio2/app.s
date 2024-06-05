@@ -26,7 +26,13 @@ main:
 	
 	bl _fondo
 	bl Dibuja_arboles
+
+	ldr x14, =Azul_sombra
+	// inicializo el auto
+    mov x10, #0
+    mov x11, #0
 	bl Car_animation
+
 
 
  
