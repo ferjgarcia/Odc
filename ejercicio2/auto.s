@@ -56,6 +56,60 @@ ruedas_loop:
     cmp w9, #2
     b.lt ruedas_loop       // Si aún no se han dibujado 4 ruedas, repite el bucle
 
+
+        //Iluminacion de las luces
+    
+// Inicializar coordenadas del primer triángulo
+    mov x9, 303                   // Coordenada X del vértice superior
+    mov x10, 203                  // Coordenada Y del vértice superior
+    mov x11, 278                  // Coordenada X del primer vértice de la base
+    mov x12, 153                  // Coordenada Y del primer vértice de la base
+    mov x13, 328                  // Coordenada X del segundo vértice de la base
+    mov x14, 153                  // Coordenada Y del segundo vértice de la base
+
+    // Inicializar coordenadas del segundo triángulo
+    mov x15, 338                  // Coordenada X del vértice superior del triángulo
+    mov x16, 203                  // Coordenada Y del vértice superior del triángulo
+    mov x17, 313                  // Coordenada X del primer vértice de la base del triángulo
+    mov x18, 153                  // Coordenada Y del primer vértice de la base del triángulo
+    mov x19, 363                  // Coordenada X del segundo vértice de la base del triángulo
+    mov x20, 153                  // Coordenada Y del segundo vértice de la base del triángulo
+
+    mov x7, 10                   // Cantidad de iteraciones
+    mov x8, 10                   // Valor de decremento
+
+loop:
+    // Dibujar el primer triángulo
+    ldr x0, =Amarillo            // Cargar el color Amarillo
+    mov x1, x9                   // Coordenada X del vértice superior
+    mov x2, x10                  // Coordenada Y del vértice superior
+    mov x3, x11                  // Coordenada X del primer vértice de la base
+    mov x4, x12                  // Coordenada Y del primer vértice de la base
+    mov x5, x13                  // Coordenada X del segundo vértice de la base
+    mov x6, x14                  // Coordenada Y del segundo vértice de la base
+    bl Pinta_triangulo           // Llamar a la función Pinta_triangulo
+
+    // Dibujar el segundo triángulo
+    ldr x0, =Amarillo            // Cargar el color Amarillo
+    mov x1, x15                  // Coordenada X del vértice superior del triángulo
+    mov x2, x16                  // Coordenada Y del vértice superior del triángulo
+    mov x3, x17                  // Coordenada X del primer vértice de la base del triángulo
+    mov x4, x18                  // Coordenada Y del primer vértice de la base del triángulo
+    mov x5, x19                  // Coordenada X del segundo vértice de la base del triángulo
+    mov x6, x20                  // Coordenada Y del segundo vértice de la base del triángulo
+    bl Pinta_triangulo           // Llamar a la función Pinta_triangulo
+
+    // Desplazar el segundo triángulo hacia abajo
+    sub x16, x16, x8             // Desplazar vértice superior del triángulo
+    sub x18, x18, x8             // Desplazar primer vértice de la base
+    sub x20, x20, x8             // Desplazar segundo vértice de la base
+
+    // Decrementar el contador de iteraciones
+    sub x7, x7, 1
+    cbnz x7, loop                // Si x7 no es cero, repetir el bucle
+
+
+
     //CUERPO DEL AUTO
 
     // Configura las coordenadas del auto
