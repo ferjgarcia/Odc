@@ -5,14 +5,20 @@
 
 Dibuja_arbol:
 
-    str x0,[sp,-8]!
-    str x1,[sp,-8]!
-    str x2,[sp,-8]!
-    str x3,[sp,-8]!
-    str x23,[sp,-8]!
-    str x24,[sp,-8]!
-    str x25,[sp,-8]!
-    str x30,[sp,-8]!
+    str x0, [sp, -8]!
+    str x1, [sp, -8]!
+    str x2, [sp, -8]!
+    str x3, [sp, -8]!
+    str x4, [sp, -8]!
+    str x10, [sp, -8]!
+    str x11, [sp, -8]!
+    str x12, [sp, -8]!
+    str x13, [sp, -8]!
+    str x14, [sp, -8]!
+    str x23, [sp, -8]!
+    str x24, [sp, -8]!
+    str x25, [sp, -8]!
+    str x30, [sp, -8]!
 
     // TRONCO
         ldr x0, =Tronco_claro          // Cargar la dirección de Tronco_claro (valor incluido en colores.s)
@@ -30,14 +36,20 @@ Dibuja_arbol:
 
 	bl Pinta_circulo
 
-    ldr x30,[sp],8
-    ldr x25,[sp],8
-    ldr x24,[sp],8
-    ldr x23,[sp],8
-    ldr x3,[sp],8
-    ldr x2,[sp],8
-    ldr x1,[sp],8
-    ldr x0,[sp],8
+    ldr x30, [sp], 8
+    ldr x25, [sp], 8
+    ldr x24, [sp], 8
+    ldr x23, [sp], 8
+    ldr x14, [sp], 8
+    ldr x13, [sp], 8
+    ldr x12, [sp], 8
+    ldr x11, [sp], 8
+    ldr x10, [sp], 8
+    ldr x4, [sp], 8
+    ldr x3, [sp], 8
+    ldr x2, [sp], 8
+    ldr x1, [sp], 8
+    ldr x0, [sp], 8
 
     ret
 
@@ -45,6 +57,25 @@ Dibuja_arbol:
 .globl Dibuja_arboles
 
 Dibuja_arboles:
+    str x0, [sp, -8]!
+    str x1, [sp, -8]!
+    str x2, [sp, -8]!
+    str x3, [sp, -8]!
+    str x4, [sp, -8]!
+    str x5, [sp, -8]!
+    str x6, [sp, -8]!
+    str x7, [sp, -8]!
+    str x8, [sp, -8]!
+    str x9, [sp, -8]!
+    str x10, [sp, -8]!
+    str x11, [sp, -8]!
+    str x12, [sp, -8]!
+    str x13, [sp, -8]!
+    str x14, [sp, -8]!
+    str x23, [sp, -8]!
+    str x24, [sp, -8]!
+    str x25, [sp, -8]!
+    str x30, [sp, -8]!
 
     mov x5, 68     // X EXT. IZQ
     mov x6, 100    // Y EXT. IZQ
@@ -98,12 +129,25 @@ Dibuja_arboles:
     bl Dibuja_arbol
 
 
-    ret
+    ldr x30, [sp], 8
+    ldr x25, [sp], 8
+    ldr x24, [sp], 8
+    ldr x23, [sp], 8
+    ldr x14, [sp], 8
+    ldr x13, [sp], 8
+    ldr x12, [sp], 8
+    ldr x11, [sp], 8
+    ldr x10, [sp], 8
+    ldr x9, [sp], 8
+    ldr x8, [sp], 8
+    ldr x7, [sp], 8
+    ldr x6, [sp], 8
+    ldr x5, [sp], 8
+    ldr x4, [sp], 8
+    ldr x3, [sp], 8
+    ldr x2, [sp], 8
+    ldr x1, [sp], 8
+    ldr x0, [sp], 8
 
-    /* // ARBUSTOS
-        ldr x0,=Verde_arbol_claro
-		mov x1, 570  // X
-		mov x2, 200  // Y
-		mov x3, 10
-	bl Pinta_circulo */
+    ret
 
