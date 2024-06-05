@@ -3,7 +3,7 @@
 .global Car_animation
 
 .equ DELAY_AUTO, 100000000  //retraso 0.1 s (en nanosegundos)
-.equ DELAY_COMIENZO, 1000000000 //retraso 1s
+//.equ DELAY_COMIENZO, 1000000000 //retraso 1s
 
 Car_animation:
     str x0, [sp, -8]!
@@ -24,30 +24,31 @@ Car_animation:
     // CONTADOR
     mov w15, #0
 
-    // inicializo el auto
-    mov x10, #0
+    ldr x14, =Rojo
+	// inicializo el auto
+    mov x10, #640
     mov x11, #0
-
+    mov x12, x14
     bl _auto
 
-    // inicializo el rectangulo
-    mov x1, #280 //X
-    mov x2, #320//Y
-    mov x3, #360//X
-    mov x4, #210//Y
+// inicializo el rectangulo
+    mov x1, #270 //X
+    mov x2, #630//Y
+    mov x3, #365//X
+    mov x4, #820//Y
 
-    ldr x13,=DELAY_COMIENZO
-    bl Wait
+    //ldr x13,=DELAY_COMIENZO
+    //bl Wait
 draw_loop:
     // veces que se ejecuta el bucle hasta que el auto salga de la pantalla
-    cmp w15, #40
+    cmp w15, #80
     bge draw_loop_end
 
     str x0, [sp, -8]!
     ldr x0, =Gris_ruta_1
     bl Pinta_rectangulo 
     ldr x0, [sp], 8
-
+    mov x12, x14
     bl _auto
 
     // Incrementa la coordenada y
