@@ -1,4 +1,3 @@
-    
 .section .text
 .include "colores.s"
 .globl _auto
@@ -57,17 +56,20 @@ ruedas_loop:
     cmp w9, #2
     b.lt ruedas_loop       // Si aún no se han dibujado 4 ruedas, repite el bucle
 
- /*   //LUCES DEL AUTO
+    //LUCES DEL AUTO
     // Inicializar coordenadas del primer triángulo
-    ldr x0, =Amarillo
+    ldr x0, =Luz
     mov x1, 640+ 303                  // Coordenada X del vértice superior
     mov x2, 480+ 203                  // Coordenada Y del vértice superior
     mov x3, 640+ 278                  // Coordenada X del primer vértice de la base
     mov x4, 480+ 153                  // Coordenada Y del primer vértice de la base
     mov x5, 640+ 328                  // Coordenada X del segundo vértice de la base
     mov x6, 480+ 153                  // Coordenada Y del segundo vértice de la base
+    sub x1, x1, x10 // X
+    sub x3, x3, x10 // X
+    sub x5, x5, x10 // X
     sub x2, x2, x11 // Y
-    sub x4, x4, x11 // y
+    sub x4, x4, x11 // Y
     sub x6, x6, x11 // Y
 
     bl Pinta_triangulo
@@ -80,11 +82,14 @@ ruedas_loop:
     mov x4, 480+ 153                  // Coordenada Y del primer vértice de la base del triángulo
     mov x5, 640+ 363                  // Coordenada X del segundo vértice de la base del triángulo
     mov x6, 480+ 153                  // Coordenada Y del segundo vértice de la base del triángulo
+    sub x1, x1, x10 // X
+    sub x3, x3, x10 // X
+    sub x5, x5, x10 // X
     sub x2, x2, x11 // Y
-    sub x4, x4, x11 // y
+    sub x4, x4, x11 // Y
     sub x6, x6, x11 // Y
     bl Pinta_triangulo
-*/
+
     //CUERPO DEL AUTO
 
     // Configura las coordenadas del auto
