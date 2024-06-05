@@ -7,7 +7,7 @@
 .equ Linea_blanca_costado_1, 0xFEFEFC
 .equ Linea_blanca_costado_2, 0xB1B1B1
 .equ Linea_blanca_ruta, 0xFFFDFE
-.equ Gris_ruta_1, 0x5A5F63
+.equ Gris_ruta_1, 0x545454
 .equ Gris_ruta_2, 0x484C4D
 .equ Verde_arbol_claro, 0x284600
 .equ Verde_arbol_oscuro, 0x1A3001
@@ -17,6 +17,7 @@
 //COLORES DE AUTOS
 
 .equ Amarillo, 0x532A00
+.equ Luz, 0xFFFB80
 .equ Amarillo_sombra, 0xDD6D23
 .equ Celeste, 0x6ECAD9
 .equ Celeste_sombra, 0x448D9C
