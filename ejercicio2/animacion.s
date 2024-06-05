@@ -2,8 +2,8 @@
 .include "colores.s"
 .global Car_animation
 
-.equ DELAY_AUTO, 200000000  //retraso 0.2 s (en nanosegundos)
-.equ DELAY_COMIENZO, 100000000
+.equ DELAY_AUTO, 100000000  //retraso 0.1 s (en nanosegundos)
+.equ DELAY_COMIENZO, 1000000000 //retraso 1s
 
 Car_animation:
     str x0, [sp, -8]!
@@ -99,4 +99,4 @@ wait_loop:
 
     ret              // Retorna cuando el tiempo de espera ha transcurrido
 
-    
+
