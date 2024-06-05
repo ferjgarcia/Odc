@@ -17,9 +17,11 @@ _auto:
     str x24, [sp, -8]!
     str x25, [sp, -8]!
     str x30, [sp, -8]!
-    //RUEDAS
+    
+    // Ruedas
 
     // Inicializa las coordenadas de la primera rueda
+    
     ldr x0, =Ruedas        // Cargar la dirección de Ruedas (valor incluido en colores.s)
     mov x5, 287            // Coordenada X inicial del extremo inferior izquierdo
     mov x6, 215            // Coordenada Y inicial del extremo inferior izquierdo
@@ -29,7 +31,9 @@ _auto:
     mov w9, 0              // Inicializa el contador de ruedas en 0
 
 ruedas_loop:
+    
     // Configura las coordenadas del rectángulo para la rueda
+    
     mov x1, x5
     mov x2, x6
     mov x3, x7
@@ -44,12 +48,14 @@ ruedas_loop:
     add w9, w9, #1
 
     // Comprueba si ya se han dibujado las 4 ruedas
+    
     cmp w9, #2
     b.lt ruedas_loop       // Si aún no se han dibujado 4 ruedas, repite el bucle
 
-    //CUERPO DEL AUTO
+    // Cuerpo del auto
 
-    // Configura las coordenadas del auto
+    // Configuración de las coordenadas del auto
+    
     ldr x0, =Rojo          // Cargar la dirección de Rojo (valor incluido en colores.s)
     mov x1, 293            // Coordenada X del extremo inferior izquierdo
     mov x2, 203            // Coordenada Y del extremo inferior izquierdo
@@ -79,7 +85,7 @@ ruedas_loop:
 
     // Luces
 
-    ldr x0, =Luces
+    ldr x0, =Luces        // Cargar la dirección de Luces (valor incluido en colores.s)
     mov x1, 302            
     mov x2, 197            
     mov x3, 312            
