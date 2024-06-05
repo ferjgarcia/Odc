@@ -8,6 +8,10 @@ _auto:
     str x2, [sp, -8]!
     str x3, [sp, -8]!
     str x4, [sp, -8]!
+    str x5, [sp, -8]!
+    str x6, [sp, -8]!
+    str x7, [sp, -8]!
+    str x8, [sp, -8]!
     str x10, [sp, -8]!
     str x11, [sp, -8]!
     str x12, [sp, -8]!
@@ -326,6 +330,10 @@ ruedas_loop:
     ldr x12, [sp], 8
     ldr x11, [sp], 8
     ldr x10, [sp], 8
+    ldr x8, [sp], 8
+    ldr x7, [sp], 8
+    ldr x6, [sp], 8
+    ldr x5, [sp], 8
     ldr x4, [sp], 8
     ldr x3, [sp], 8
     ldr x2, [sp], 8
@@ -333,6 +341,4 @@ ruedas_loop:
     ldr x0, [sp], 8
 
     ret
-    
-    
     
