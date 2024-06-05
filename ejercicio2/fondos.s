@@ -1,6 +1,9 @@
  .section .text
  .include "colores.s"
  .globl _fondo
+
+ .equ DELAY, 100000000
+
  _fondo:
      str x0, [sp, -8]!
      str x1, [sp, -8]!
@@ -89,66 +92,23 @@ continuar:
     mov x3, #488
     mov x4, #0
     bl Pinta_rectangulo
-    
-    //Primera linea de la calle
+
+
+// LINEAS ANIMACION
+/* ------------------------------------------------------------- */
+
+Animacion_lineas_ruta:
+
     ldr x0, =Linea_blanca_ruta
     mov x1, #264
     mov x2, #100
     mov x3, #269
     mov x4, #16
-    bl Pinta_rectangulo
 
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #264
-    mov x2, #224
-    mov x3, #269
-    mov x4, #140
-    bl Pinta_rectangulo
+    Animacion_loop:
 
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #264
-    mov x2, #348
-    mov x3, #269
-    mov x4, #264
-    bl Pinta_rectangulo
+    bl Pinta_linea_ruta
 
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #264
-    mov x2, #472
-    mov x3, #269
-    mov x4, #388
-    bl Pinta_rectangulo
-
-    //Segunda línea de la calle
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #376
-    mov x2, #100
-    mov x3, #381
-    mov x4, #16
-    bl Pinta_rectangulo
-
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #376
-    mov x2, #224
-    mov x3, #381
-    mov x4, #140
-    bl Pinta_rectangulo
-
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #376
-    mov x2, #348
-    mov x3, #381
-    mov x4, #264
-    bl Pinta_rectangulo
-
-    ldr x0, =Linea_blanca_ruta
-    mov x1, #376
-    mov x2, #472
-    mov x3, #381
-    mov x4, #388
-    bl Pinta_rectangulo
-
-    // Restauración del estado del registro
     ldr x30, [sp], 8
     ldr x25, [sp], 8
     ldr x24, [sp], 8
@@ -165,4 +125,69 @@ continuar:
     ldr x0, [sp], 8
 
     ret
+
+//LINEAS RUTA
+.globl Pinta_linea_ruta
+
+    Pinta_linea_ruta:
+    str x0,[sp,-8]!
+    str x24,[sp,-8]!
+    str x5,[sp,-8]!
+    str x6,[sp,-8]!
+    str x7,[sp,-8]!
+    str x8,[sp,-8]!
+    str x9,[sp,-8]!
+    str x10,[sp,-8]!
+    str x30,[sp,-8]!
+
+    mov w10, #0 // contador
+
+    bl Pinta_rectangulo
+
+    linea_izq_loop:
+
+        cmp w10, #4
+        bge Siguiente_linea
+
+        add x2, x2, #124
+        add x4, x4, #124
+
+        bl Pinta_rectangulo
+
+        add w10, w10, #1
+        b linea_izq_loop
+
+    Siguiente_linea:
+
+        mov x1, #376
+        mov x3, #381
+        bl Pinta_rectangulo
+
+        linea_der_loop:
+
+            cmp w10, #8
+            bge linea_loop_end
+
+            sub x2, x2, #124
+            sub x4, x4, #124
+
+            bl Pinta_rectangulo
+
+            add w10, w10, #1
+            b linea_der_loop
+
+    linea_loop_end:
+    
+    ldr x30,[sp],8
+    ldr x10,[sp],8
+    ldr x9,[sp],8
+    ldr x8,[sp],8
+    ldr x7,[sp],8
+    ldr x6,[sp],8
+    ldr x5,[sp],8
+    ldr x24,[sp],8
+    ldr x0,[sp],8
+
+    ret
+
 
